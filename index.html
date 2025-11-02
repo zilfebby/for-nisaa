@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift Card For Nisaa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink1: #ffe6f2;
+      --pink2: #ffcce0;
+      --accent: #ff8fc1;
+      --heart-size: 56px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, var(--pink1), var(--pink2));
+      font-family: 'Poppins', sans-serif;
+      color: #4a2b38;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slideshow {
+      position: relative;
+      width: 92%;
+      max-width: 720px;
+      height: 82vh;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(255,100,150,0.18);
+      background: rgba(255,255,255,0.5);
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .6s ease, transform .6s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      text-align: center;
+    }
+
+    .slide.active { opacity: 1; transform: scale(1); }
+
+    .slide img {
+      width: 78%;
+      max-height: 62%;
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+      margin-bottom: 18px;
+    }
+
+    .slide h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.6rem;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+
+    .slide p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #5a3a47;
+    }
+
+    /* tombol hati navigasi */
+    .nav-heart {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: var(--heart-size);
+      height: var(--heart-size);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg,#ff7fb9,#ff4f98);
+      box-shadow: 0 8px 20px rgba(255,80,145,0.25);
+      cursor: pointer;
+      border: 6px solid rgba(255,255,255,0.65);
+      backdrop-filter: blur(4px);
+      z-index: 5;
+    }
+    .nav-heart.left { left: 12px; }
+    .nav-heart.right { right: 12px; }
+    .nav-heart span { font-size: 22px; transform: rotate(-20deg); display: inline-block; }
+    .nav-heart:active { transform: translateY(-50%) scale(.95); }
+
+    /* titik slide */
+    .dots {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 50px;
+      display: flex;
+      gap: 8px;
+      z-index: 5;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06);
+      cursor: pointer;
+    }
+    .dot.active { background: var(--accent); }
+
+    /* tombol musik */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      z-index: 9999;
+      pointer-events: auto;
+    }
+
+    /* animasi berputar saat musik play */
+    .music-btn.playing {
+      animation: spin 4s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* efek hati beterbangan */
+    .bg-heart {
+      position: absolute;
+      bottom: -10%;
+      font-size: 18px;
+      color: #ff9acb;
+      opacity: 0;
+      animation: fly 6s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    @keyframes fly {
+      0% { transform: translateY(0) scale(.8); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.4); opacity: 0; }
+    }
+
+    @media(max-width:600px){
+      :root{--heart-size:48px}
+      .slide h2{font-size:2.2rem}
+      .slide img{width:90%;max-height:56%}
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow" id="slideshow">
+    <div class="slide active" data-index="0">
+      <img src="foto_kamu.jpg" alt="Foto Romantis">
+      <h2>Thank you for making my life happier,</h2>
+      <p>with everything about me.</p>
+    </div>
+
+    <div class="slide" data-index="1">
+      <img src="foto_kamu.jpg" alt="Foto Romantis">
+      <h2>I am so lucky to have meet you,</h2>
+      <p>to know you.</p>
+    </div>
+
+    <div class="slide" data-index="2">
+      <img src="foto_kamu.jpg" alt="Foto Romantis">
+      <h2>I am so very lucky to have you.</h2>
+      <p>I love you infinitely 💕</p>
+    </div>
+
+    <button class="nav-heart left" id="prevBtn"><span>❤</span></button>
+    <button class="nav-heart right" id="nextBtn"><span>❤</span></button>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="music-btn" id="musicBtn">🎵</div>
+  <audio id="bgMusic" loop>
+    <source src="musik_kamu.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
+    const musicBtn = document.getElementById('musicBtn');
+    const music = document.getElementById('bgMusic');
+    let current = 0;
+
+    slides.forEach((s,i)=>{
+      const d=document.createElement('div');
+      d.className='dot'+(i===0?' active':'');
+      d.dataset.index=i;
+      d.addEventListener('click',()=>goTo(i));
+      dotsWrap.appendChild(d);
+    });
+
+    function updateUI(){
+      slides.forEach((s,i)=>s.classList.toggle('active',i===current));
+      [...dotsWrap.children].forEach((d,i)=>d.classList.toggle('active',i===current));
+    }
+    function goTo(i){current=(i+slides.length)%slides.length;updateUI();}
+    function next(){goTo(current+1);}
+    function prev(){goTo(current-1);}
+    nextBtn.onclick=next;
+    prevBtn.onclick=prev;
+
+    document.getElementById('slideshow').addEventListener('click',e=>{
+      if(!e.target.closest('.nav-heart')) next();
+    });
+
+    // tombol musik
+    musicBtn.addEventListener('click',()=>{
+      if(music.paused){
+        music.play().then(()=>{
+          musicBtn.classList.add('playing');
+          musicBtn.textContent='⏸️';
+        }).catch(err=>console.log(err));
+      } else {
+        music.pause();
+        musicBtn.classList.remove('playing');
+        musicBtn.textContent='🎵';
+      }
+    });
+
+    // efek hati
+    function spawnHeart(){
+      const h=document.createElement('div');
+      h.className='bg-heart';
+      h.textContent='💗';
+      h.style.left=Math.random()*100+'vw';
+      h.style.fontSize=12+Math.random()*36+'px';
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),7000);
+    }
+    setInterval(spawnHeart,900);
+  </script>
+</body>
+</html>
